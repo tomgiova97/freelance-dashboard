@@ -5,9 +5,18 @@
   color: var(--text-main);
 }
 
-.header { margin-bottom: 40px; }
-.header h1 { font-size: 2rem; margin-bottom: 8px; }
-.header p { color: var(--text-muted); }
+.header {
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.header p {
+  color: var(--text-muted);
+}
 
 .mainContent {
   display: grid;
@@ -67,7 +76,9 @@
   top: 20px;
 }
 
-.detailContent { padding: 30px; }
+.detailContent {
+  padding: 30px;
+}
 
 .badge {
   display: inline-block;
@@ -80,7 +91,11 @@
   margin-bottom: 15px;
 }
 
-.description { color: var(--text-muted); line-height: 1.6; margin-top: 10px; }
+.description {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 10px;
+}
 
 .statsGrid {
   display: grid;
@@ -92,9 +107,20 @@
   border-bottom: 1px solid var(--border);
 }
 
-.statBox label { font-size: 0.75rem; color: var(--text-muted); }
-.statBox p { font-weight: 600; font-size: 1.1rem; margin-top: 5px; }
-.highlight { color: var(--primary); }
+.statBox label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.statBox p {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.highlight {
+  color: var(--primary);
+}
 
 .tasksStack {
   display: flex;
@@ -112,10 +138,22 @@
   border-radius: 8px;
 }
 
-.taskInfo { display: flex; flex-direction: column; }
-.taskInfo span { font-size: 0.75rem; color: var(--text-muted); }
+.taskInfo {
+  display: flex;
+  flex-direction: column;
+}
 
-.statusDot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
+.taskInfo span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+}
 
 .emptyState {
   display: flex;
@@ -126,22 +164,160 @@
   font-style: italic;
 }
 
-.closeBtn { display: none; } /* Only for mobile */
+.closeBtn {
+  display: none;
+}
+
+/* Only for mobile */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.addBtn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.miniAddBtn {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Modal UI (Matches Payments Page) */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputGroup label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.inputGroup input,
+.inputGroup select {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline-color: var(--primary);
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submitBtn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Remove arrows/spinners from number inputs */
+.amountInput::-webkit-outer-spin-button,
+.amountInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.amountInput {
+  -moz-appearance: textfield; /* Firefox support */
+}
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .mainContent { grid-template-columns: 1fr; }
-  
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+
   /* Mobile Detail View: Overlay style */
   .detailPanel {
     display: none;
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 100;
     border-radius: 0;
   }
-  
-  .panelOpen { display: block; overflow-y: auto; }
+
+  .panelOpen {
+    display: block;
+    overflow-y: auto;
+  }
+
   .closeBtn {
     display: block;
     margin-bottom: 20px;

@@ -59,34 +59,3 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: error.message }, { status: 400 });
     }
 }
-
-// export async function POST(req: NextRequest) {
-//   try {
-//     await connectDB();
-//     const body = await req.json();
-
-//     // 1. Create the new payment
-//     const newPayment = await Payment.create({
-//       projectId: body.projectId,
-//       amount: Number(body.amount),
-//       currency: body.currency || 'USD',
-//       date: body.date ? new Date(body.date) : new Date(),
-//     });
-
-//     console.log(newPayment)
-
-//     // 2. Update the Project's cumulatedCompensation
-//     // We increment the current value by the new payment amount
-//     const project = await Project.findById(body.projectId);
-//     // project.cumulatedCompensation = project.cumulatedCompensation + Number(body.amount);
-//     Project.updateOne({id:body.projectId}, {cumulatedCompensation: project.cumulatedCompensation + Number(body.amount)})
-//     // await Project.findByIdAndUpdate(body.projectId, {
-//     //   $inc: { cumulatedCompensation: Number(body.amount) }
-//     // });
-
-//     return NextResponse.json(newPayment, { status: 201 });
-//   } catch (error: any) {
-//     return NextResponse.json({ error: error.message }, { status: 400 });
-//   }
-// }
-

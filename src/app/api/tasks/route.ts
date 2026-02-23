@@ -22,3 +22,22 @@ export async function GET(req: NextRequest) {
     console.log(tasks);
     return NextResponse.json(tasks);
 }
+
+export async function POST(req: NextRequest) {
+  await connectDB();
+  try {
+    const body = await req.json();
+
+    const newTask = await Task.create({
+      projectId: body.projectId,
+      description: body.description,
+      startDate: body.startDate ? new Date(body.startDate) : new Date(),
+      endDate: body.endDate ? new Date(body.endDate) : null,
+      dueDate: body.dueDate ? new Date(body.dueDate) : new Date(),
+    });
+
+    return NextResponse.json(newTask, { status: 201 });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
+}

@@ -21,3 +21,26 @@ export async function GET(req: NextRequest) {
     const projects = await Project.find(query).sort({ startDate: -1 });
     return NextResponse.json(projects);
 }
+
+// POST a new project
+export async function POST(req: NextRequest) {
+    await connectDB();
+    try {
+        const body = await req.json();
+
+        const newProject = await Project.create({
+            title: body.title,
+            companyName: body.companyName,
+            description: body.description,
+            compensation: Number(body.compensation),
+            compensationRate: body.compensationRate,
+            startDate: new Date(body.startDate),
+            endDate: new Date(body.endDate),
+            cumulatedCompensation: 0
+        });
+
+        return NextResponse.json(newProject, { status: 201 });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+}
