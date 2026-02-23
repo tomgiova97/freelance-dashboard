@@ -1,141 +1,255 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+:root {
+  --primary: #4f46e5; /* Professional Indigo */
+  --primary-light: #eef2ff;
+  --bg-main: #f8fafc; /* Very light slate background */
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+}
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
+.container {
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  padding: 20px;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.main {
+.nav {
   display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
-}
-
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
+  gap: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
+  margin-bottom: 30px;
   font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+  font-size: 0.9rem;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.active { 
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: -17px; /* Align with nav border */
+  padding-bottom: 15px;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.calendarHeader {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  background: var(--bg-card);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
+.calendarHeader h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* --- DESKTOP LAYOUT (Horizontal Channels) --- */
+.timelineContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: 180px repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-right: 10px;
+}
+
+.dayLabel {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.projectRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 15px;
+  background: var(--bg-card);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.projectInfo strong { font-size: 1rem; }
+.projectInfo span { font-size: 0.8rem; color: var(--text-muted); }
+
+.taskChannel {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  min-height: 50px;
+}
+
+.taskBar {
+  background: var(--primary);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: center;
+}
+
+/* Navigation Buttons Refresh */
+.navBtn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: var(--text-main);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
   gap: 8px;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.navBtn:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
+.navBtn:active {
+  transform: translateY(0);
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
+/* Modal / Task Card Styles */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.6); /* Darker blur effect */
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+.detailCard {
+  background: var(--bg-card);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cardHeader {
+  padding: 24px;
+  background: var(--primary-light);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cardBody {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoGroup label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.infoGroup p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.taskBar {
+  /* ... previous styles */
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.taskBar:hover {
+  filter: brightness(1.1);
+}
+
+/* --- MOBILE LAYOUT (Vertical Transformation) --- */
+@media (max-width: 768px) {
+  .daysGrid {
+    display: none; /* Hide horizontal days header */
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .projectRow {
+    grid-template-columns: 1fr; /* Stack Project Info and Tasks */
+    gap: 20px;
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+  .projectInfo {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .taskChannel {
+    grid-template-columns: 1fr; /* Tasks stack vertically */
+    gap: 10px;
+  }
+
+  /* We remove the grid-column span on mobile so they take full width */
+  .taskBar {
+    grid-column: 1 / -1 !important; 
+    position: relative;
+    padding-left: 40px;
+  }
+
+  /* Visual indicator for mobile tasks */
+  .taskBar::before {
+    content: '●';
+    position: absolute;
+    left: 15px;
+    color: rgba(255,255,255,0.6);
   }
 }
